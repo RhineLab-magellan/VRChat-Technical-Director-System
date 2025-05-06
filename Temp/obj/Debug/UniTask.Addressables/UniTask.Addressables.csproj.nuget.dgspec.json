@@ -1,0 +1,132 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\project\\workSpace\\UniTask.Addressables.csproj": {}
+  },
+  "projects": {
+    "E:\\project\\workSpace\\UniTask.Addressables.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\UniTask.Addressables.csproj",
+        "projectName": "UniTask.Addressables",
+        "projectPath": "E:\\project\\workSpace\\UniTask.Addressables.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\UniTask.Addressables\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\UniTask.csproj": {
+                "projectPath": "E:\\project\\workSpace\\UniTask.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\UniTask.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\UniTask.csproj",
+        "projectName": "UniTask",
+        "projectPath": "E:\\project\\workSpace\\UniTask.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\UniTask\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

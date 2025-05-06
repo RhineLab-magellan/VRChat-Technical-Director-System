@@ -1,0 +1,30 @@
+[
+    {
+        "VoidNameID": 7,
+        "CameraTrackingTarget": 1,
+        "DisPlayName": "",
+        "Slarp": false,
+        "Name": "0"
+    },
+    {
+        "VoidNameID": 2,
+        "CameraTrackingTarget": 0,
+        "DisPlayName": "0",
+        "Slarp": false,
+        "Name": "1"
+    },
+    {
+        "VoidNameID": 6,
+        "CameraTrackingTarget": 0,
+        "DisPlayName": "0",
+        "Slarp": false,
+        "Name": "2"
+    },
+    {
+        "VoidNameID": 5,
+        "CameraTrackingTarget": 0,
+        "DisPlayName": "0",
+        "Slarp": false,
+        "Name": "3"
+    }
+]

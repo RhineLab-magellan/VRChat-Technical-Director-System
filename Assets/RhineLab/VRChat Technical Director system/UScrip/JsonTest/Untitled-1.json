@@ -1,0 +1,42 @@
+[
+	{
+		"Name": "关闭系统",
+		"Info": "关闭系统",
+		"VoidNameID": 0,
+		"CameraTrackingTarget": 0,
+		"DisPlayName": "",
+		"Slarp": false
+	},
+	{
+		"Name": "特殊自由模式-1",
+		"Info": "1",
+		"VoidNameID": 5,
+		"CameraTrackingTarget": 1,
+		"DisPlayName": "",
+		"Slarp": false
+	},
+	{
+		"Name": "面向玩家追踪-后背",
+		"Info": "面向玩家追踪-后背",
+		"VoidNameID": 2,
+		"CameraTrackingTarget": 1,
+		"DisPlayName": "",
+		"Slarp": false
+	},
+	{
+		"Name": "特殊自由模式-0",
+		"Info": "特殊自由模式-0",
+		"VoidNameID": 5,
+		"CameraTrackingTarget": 0,
+		"DisPlayName": "",
+		"Slarp": false
+	},
+	{
+		"Name": "无人机",
+		"Info": "无人机模式",
+		"VoidNameID": 7,
+		"CameraTrackingTarget": 1,
+		"DisPlayName": "",
+		"Slarp": false
+	}
+]

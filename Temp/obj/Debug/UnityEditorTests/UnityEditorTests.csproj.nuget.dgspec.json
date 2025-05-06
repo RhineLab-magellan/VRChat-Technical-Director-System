@@ -1,0 +1,605 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\project\\workSpace\\UnityEditorTests.csproj": {}
+  },
+  "projects": {
+    "E:\\project\\workSpace\\UniTask.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\UniTask.csproj",
+        "projectName": "UniTask",
+        "projectPath": "E:\\project\\workSpace\\UniTask.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\UniTask\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\UnityEditorTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\UnityEditorTests.csproj",
+        "projectName": "UnityEditorTests",
+        "projectPath": "E:\\project\\workSpace\\UnityEditorTests.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\UnityEditorTests\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\VRC.SDK3.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDK3.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDK3.Editor.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDK3.Editor.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDKBase.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.Udon.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.Udon.Editor.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.Editor.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.SDK3.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.SDK3.csproj",
+        "projectName": "VRC.SDK3",
+        "projectPath": "E:\\project\\workSpace\\VRC.SDK3.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.SDK3\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\VRC.Udon.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.SDK3.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.SDK3.Editor.csproj",
+        "projectName": "VRC.SDK3.Editor",
+        "projectPath": "E:\\project\\workSpace\\VRC.SDK3.Editor.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.SDK3.Editor\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\UniTask.csproj": {
+                "projectPath": "E:\\project\\workSpace\\UniTask.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDK3.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDK3.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDKBase.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.Udon.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.SDKBase.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.SDKBase.csproj",
+        "projectName": "VRC.SDKBase",
+        "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.SDKBase\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj",
+        "projectName": "VRC.SDKBase.Editor",
+        "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.Editor.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.SDKBase.Editor\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\UniTask.csproj": {
+                "projectPath": "E:\\project\\workSpace\\UniTask.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.SDKBase.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.SDKBase.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.Udon.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.Udon.csproj",
+        "projectName": "VRC.Udon",
+        "projectPath": "E:\\project\\workSpace\\VRC.Udon.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.Udon\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.Udon.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.Udon.Editor.csproj",
+        "projectName": "VRC.Udon.Editor",
+        "projectPath": "E:\\project\\workSpace\\VRC.Udon.Editor.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.Udon.Editor\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\project\\workSpace\\VRC.Udon.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.csproj"
+              },
+              "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj": {
+                "projectPath": "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj",
+        "projectName": "VRC.Udon.Serialization.OdinSerializer",
+        "projectPath": "E:\\project\\workSpace\\VRC.Udon.Serialization.OdinSerializer.csproj",
+        "packagesPath": "C:\\Users\\magellan\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\workSpace\\Temp\\obj\\Debug\\VRC.Udon.Serialization.OdinSerializer\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\VS组件\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\magellan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

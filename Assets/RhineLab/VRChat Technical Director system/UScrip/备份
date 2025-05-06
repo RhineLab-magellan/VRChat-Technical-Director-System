@@ -1,0 +1,330 @@
+﻿
+using System;
+using UdonSharp;
+using UnityEngine;
+using VRC.SDKBase;
+using VRC.Udon;
+
+
+[UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
+public class ControlCenter : UdonSharpBehaviour
+{
+
+    //切换跟踪模式所在位置
+    private string[] VoidNames;
+    
+    //启动的
+    [UdonSynced]private int VoidNameID = 0;
+
+    [UdonSynced]private int CameraTrackingTarget = 0;
+
+    private string DisPlayName;
+
+    [UdonSynced] private bool Slarp;
+
+    //开始设置初始值
+    [Tooltip("系统使用的RenderTexture")]
+    public RenderTexture RenderTEX;
+    [Tooltip("需要使用到RenderTexture的地方放这里")]
+    public MeshRenderer[] material;
+    [Tooltip("子系统设置在这里")]
+    public GameObject[] ModName   ;
+    [Tooltip("是否启用丢包检测（开启后您与其他人的同步会有延迟《大概1-5秒》）")]
+    public bool SafeMod;
+
+    private VRCPlayerApi[] Players;
+    private string[] Displayers;
+
+
+
+
+    //模式组UdonGet
+    private UdonBehaviour FixedCAMU;
+    private UdonBehaviour FaceTrackingU;
+    private UdonBehaviour LookAtTU;
+    private UdonBehaviour PlanetrackingU;
+    private UdonBehaviour LowFreeU;
+    private UdonBehaviour FreeU;
+    private UdonBehaviour CustonSystemU;
+
+    //跟踪模块
+    private Transform TrackingCamera;
+    private Transform TrackingCamera2;
+    private Camera CAM;
+    private string TrackingOwner;
+
+    //相机脚本
+    private UdonBehaviour CAMUdon;
+    private UdonBehaviour CAMUdon2;
+
+    //网络重传机制
+    private bool NetworkingOn;
+    private bool NetworkingStart;
+    private VRCPlayerApi LocalPlayer;
+
+
+
+    void Start()
+    {
+        VoidNames = new string[8] { "None","FixedCAM", "FaceTracking", "LookAtT", "Planetracking", "LowFree","Free","CustonSystem"};
+
+        TrackingCamera = transform.Find("OWNER Head");
+        TrackingCamera2 = transform.Find("OWNER Chest");
+
+        CAM = transform.Find("CameraSystem").GetComponent<Camera>();
+
+        var Udon = transform.Find(ModName[0].name);
+        FixedCAMU = Udon.GetComponent<UdonBehaviour>();
+
+
+        Udon = transform.Find(ModName[1].name);
+        FaceTrackingU = Udon.GetComponent<UdonBehaviour>();
+
+
+        Udon = transform.Find(ModName[2].name);
+        LookAtTU = Udon.GetComponent<UdonBehaviour>();
+
+
+        Udon = transform.Find(ModName[3].name);
+        PlanetrackingU = Udon.GetComponent<UdonBehaviour>();
+
+
+        Udon = transform.Find(ModName[4].name);
+        LowFreeU = Udon.GetComponent<UdonBehaviour>();
+ 
+
+        Udon = transform.Find(ModName[5].name);
+        FreeU = Udon.GetComponent<UdonBehaviour>();
+
+        Udon = transform.Find(ModName[6].name);
+        CustonSystemU = Udon.GetComponent<UdonBehaviour>();
+
+        LocalPlayer = Networking.LocalPlayer;
+        
+
+        FixedCAMU.enabled = false;
+        FaceTrackingU.enabled = false;
+        LookAtTU.enabled = false;
+        PlanetrackingU.enabled = false;
+        LowFreeU.enabled = false;
+        FreeU.enabled = false;
+        CustonSystemU.enabled = false;
+
+        //以下部分为初始化更换系统下的所有RenderTEX
+        CAMUdon = TrackingCamera.gameObject.GetComponent<UdonBehaviour>();
+        CAMUdon2 = TrackingCamera2.gameObject.GetComponent<UdonBehaviour>();
+        
+        TrackingOwner = Networking.GetOwner(TrackingCamera.gameObject).displayName;
+
+        CAM.GetComponent<Camera>().targetTexture = RenderTEX;
+        CAM.GetComponent<Camera>().enabled = true;
+
+        if (material.Length == 0) { return; }
+        for (int i = 0; i < material.Length; i++)
+        {
+            var materialLocal = material[i].material;
+            materialLocal.SetTexture("_MainTex", RenderTEX);
+        }
+        SendCustomEventDelayedFrames("Start1", 1);
+        
+    }
+
+    public void Start1()
+    {
+        if (CAM.GetComponent<Camera>().enabled) 
+        {
+            CAM.GetComponent<Camera>().enabled = false;
+            CallCamera();
+            return;
+        }
+        else
+        {
+            CAM.GetComponent<Camera>().enabled = true;
+            SendCustomEventDelayedFrames("Start1", 1);
+        }
+
+    }
+
+    public override void OnPlayerJoined(VRCPlayerApi player)
+    {
+        CallCamera();
+        ResetDisplay();
+        
+    }
+
+    public void StartChanger()
+    {
+        Networking.SetOwner(Networking.LocalPlayer, this.gameObject);
+        if (SafeMod)
+        {
+            RequestSerializationSafe();
+            DisplayChanger();
+        }
+        else
+        {
+            RequestSerialization();
+            OnDeserialization();
+            DisplayChanger();
+        }
+        
+    }
+
+    public override void OnDeserialization()
+    {
+        CallCamera();
+
+        NetworkingStart = false;
+    }
+
+
+
+    //统一关闭子系统以解锁Camera的控制
+    public void CallCamera()
+    {
+        FixedCAMU.enabled = false;
+        FaceTrackingU.enabled = false;
+        LookAtTU.enabled = false;
+        PlanetrackingU.enabled = false;
+        LowFreeU.enabled = false;
+        FreeU.enabled = false;
+        CustonSystemU.enabled = false;
+
+        SendCustomEvent(VoidNames[VoidNameID]);
+    }
+
+    //发送参数事件以及至子系统
+    public void None()
+    {
+        CAM.enabled = false;
+    }
+
+    public void FixedCAM()
+    {
+        CAM.enabled = true;
+        FixedCAMU.enabled = true;
+        FixedCAMU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        FixedCAMU.SetProgramVariable("Slarp", Slarp);
+        FixedCAMU.SendCustomEvent("ChangerTarget");
+
+    }
+    public void FaceTracking()
+    {
+        CAM.enabled = true;
+        FaceTrackingU.enabled = true;
+        FaceTrackingU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        FaceTrackingU.SetProgramVariable("Slarp", Slarp);
+        FaceTrackingU.SendCustomEvent("ChangerTarget");
+    }
+    public void LookAtT()
+    {
+        CAM.enabled = true;
+        LookAtTU.enabled = true;
+        LookAtTU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        LookAtTU.SetProgramVariable("Slarp", Slarp);
+        LookAtTU.SendCustomEvent("ChangerTarget");
+
+    }
+    public void Planetracking()
+    {
+        CAM.enabled = true;
+        PlanetrackingU.enabled = true;
+        PlanetrackingU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        PlanetrackingU.SetProgramVariable("Slarp", Slarp);
+        PlanetrackingU.SendCustomEvent("ChangerTarget");
+    }
+    public void LowFree()
+    {
+        CAM.enabled = true;
+        LowFreeU.enabled = true;
+        LowFreeU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        LowFreeU.SetProgramVariable("Slarp", Slarp);
+        LowFreeU.SendCustomEvent("ChangerTarget");
+    }
+    public void Free()
+    {
+        CAM.enabled = true;
+        FreeU.enabled = true;
+        FreeU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        FreeU.SetProgramVariable("Slarp", Slarp);
+        FreeU.SendCustomEvent("ChangerTarget");
+    }
+    public void CustonSystem()
+    {
+        CAM.enabled = true;
+        CustonSystemU.enabled = true;
+        CustonSystemU.SetProgramVariable("CameraTrackingTarget", CameraTrackingTarget);
+        CustonSystemU.SetProgramVariable("Slarp", Slarp);
+        CustonSystemU.SendCustomEvent("ChangerTarget");
+
+    }
+
+    public void DisplayChanger()
+    {
+        Debug.Log(DisPlayName);
+        if (DisPlayName == Networking.GetOwner(TrackingCamera.gameObject).displayName &&
+    DisPlayName == Networking.GetOwner(TrackingCamera2.gameObject).displayName)
+        {
+            TrackingOwner = DisPlayName;
+            return; 
+        }
+        int Index =Array.IndexOf(Displayers, DisPlayName);
+        Debug.Log(Index);
+        if (Index < 0)
+        { return;}
+        Networking.SetOwner(Players[Index],TrackingCamera.gameObject);
+        Networking.SetOwner(Players[Index], TrackingCamera2.gameObject);
+        TrackingOwner = Networking.GetOwner(TrackingCamera.gameObject).displayName;
+    }
+
+    public void ResetDisplay()
+    {
+        Debug.Log("脚本开始重置玩家名称");
+        Players = new VRCPlayerApi[VRCPlayerApi.GetPlayerCount()];
+        VRCPlayerApi.GetPlayers(Players);
+        Displayers = new string[Players.Length];
+        for (int i = 0; i < Players.Length; i++)
+        {
+            var Name = Players[i].displayName;
+            Displayers[i] = Name;
+        }
+    }
+
+    //网络重传机制
+    public void RequestSerializationSafe()
+    {
+        NetworkingOn = true;
+        SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "NetworkStart1");
+        OnDeserialization();
+    }
+
+    public void NetworkS()
+    {
+        if (NetworkingOn == false) { return; }
+        if (LocalPlayer == Networking.GetOwner(this.gameObject)) { RequestSerialization(); }
+        NetworkingOn = false;
+
+    }
+
+    public void NetworkStart1()
+    {
+        if (LocalPlayer == Networking.GetOwner(this.gameObject)) { return; }
+        NetworkingStart = true;
+        SendCustomEventDelayedSeconds("NetwokEnd", 10);
+        SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, "NetworkS");
+
+    }
+
+    public void NetwokEnd()
+    {
+        if (NetworkingStart)
+        {
+            SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, "NetworkError");
+
+        }
+    }
+
+    public void NetworkError()
+    {
+        RequestSerialization();
+    }
+}
