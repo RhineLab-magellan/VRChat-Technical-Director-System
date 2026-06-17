@@ -490,13 +490,13 @@ public class AnimatorControl : UdonSharpBehaviour
 
     public void UP1()
     {
-        int1 = int1++;
+        int1 = int1 + 1;
         int1T.text = int1.ToString();
     }
 
     public void Down1()
     {
-        int1 = int1--;
+        int1 = int1 - 1;
         if (int1 <= 0)
         { int1 = 0; }
         int1T.text = int1.ToString();
@@ -504,13 +504,13 @@ public class AnimatorControl : UdonSharpBehaviour
 
     public void UP2()
     {
-        int2 = int2++;
+        int2 = int2 + 1;
         int2T.text = int2.ToString();
     }
 
     public void Down2()
     {
-        int2 = int2--;
+        int2 = int2 - 1;
         if (int2 <= 0)
         { int2 = 0; }
         int2T.text = int2.ToString();
@@ -518,13 +518,13 @@ public class AnimatorControl : UdonSharpBehaviour
 
     public void UP3()
     {
-        int3 = int3++;
+        int3 = int3 + 1;
         int3T.text = int3.ToString();
     }
 
     public void Down3()
     {
-        int3 = int3--;
+        int3 = int3 - 1;
         if (int3 <= 0)
         { int3 = 0; }
         int3T.text = int3.ToString();

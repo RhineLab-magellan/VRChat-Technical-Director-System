@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: SyncedSlider-TestGraph
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: f61754768e44a534488a95e2b45d742c, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: db744c2f1980ff84695479584a2b9351, type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export uiSlider\r\n    .export uiText\r\n   
     .sync sliderValue, none\r\n    \r\n    __Boolean_0: %SystemBoolean, null\r\n   
     __Single_0: %SystemSingle, null\r\n    __Single_1: %SystemSingle, null\r\n   

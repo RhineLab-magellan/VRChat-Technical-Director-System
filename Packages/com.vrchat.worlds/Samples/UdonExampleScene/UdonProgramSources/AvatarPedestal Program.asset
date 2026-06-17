@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: AvatarPedestal Program
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 8c139d48f13ae284990aac7d4e93812d, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: fedd0d0f16ae83c468037b29b14ab2c4, type: 2}
   udonAssembly: ".data_start\r\n\r\n    \r\n    __instance_0: %VRCSDK3ComponentsVRCAvatarPedestal,
     null\r\n    __instigator_0: %VRCSDKBaseVRCPlayerApi, null\r\n    __instance_1:
     %UnityEngineGameObject, this\r\n    __type_0: %SystemType, null\r\n    __Type_0:

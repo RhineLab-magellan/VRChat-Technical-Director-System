@@ -1,4 +1,5 @@
 ﻿
+using JetBrains.Annotations;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,14 +51,19 @@ public class DisPlayerM : UdonSharpBehaviour
 
     public override void OnDeserialization()
     {
-        if (UsingCamera > -1)
+        if (UsingCamera > -1 && UsingCamera != DisplayIndex)
         {
             UdonBehaviour SystemUdon = CameraSystem[UsingCamera].GetComponent<UdonBehaviour>();
             SystemUdon.SetProgramVariable("Isusing", false);
+            SystemUdon.SetProgramVariable("Isflowing", false);
             SystemUdon.SendCustomEvent("RefreashChanger");
             UsingCamera = -1;
         }
+        SendCustomEventDelayedFrames(nameof(DisplayChanger), 1);
+    }
 
+    public void DisplayChanger()
+    {
         if (-1 < DisplayIndex && DisplayIndex < DisPlayTEX.Length)
         {
 
@@ -68,9 +74,10 @@ public class DisPlayerM : UdonSharpBehaviour
             UdonBehaviour SystemUdon = CameraSystem[DisplayIndex].GetComponent<UdonBehaviour>();
             UsingCamera = DisplayIndex;
             SystemUdon.SetProgramVariable("Isusing", true);
+            SystemUdon.SetProgramVariable("Isflowing", true);
             SystemUdon.SendCustomEvent("RefreashChanger");
         }
-        else if (-1 >= DisplayIndex && DisplayIndex < (-TVTextur.Length))
+        else if (-1 >= DisplayIndex && -DisplayIndex - 1 < TVTextur.Length)
         {
             DisplayIndex = -DisplayIndex - 1;
             CameraM.SetTexture("_MainTex", TVTextur[DisplayIndex]);
@@ -79,13 +86,6 @@ public class DisPlayerM : UdonSharpBehaviour
             UsingCamera = -1;
 
         }
-
-
-
-
-
-
+        Main.SendCustomEvent("PushflowImageChanger");
     }
-
-
 }

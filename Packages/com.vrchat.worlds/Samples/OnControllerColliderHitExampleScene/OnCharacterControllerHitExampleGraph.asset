@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: OnCharacterControllerHitExampleGraph
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 571bfbbc5e5fd3e41828485da15589b2, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: ee91a2d7600294e4eacf88f5a24413e1, type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export characterController\r\n    .export
     moveSpeed\r\n    .export hitNameText\r\n    .export characterControllerStartPos\r\n   
     \r\n    __instance_0: %TMProTextMeshProUGUI, null\r\n    __value_0: %SystemString,

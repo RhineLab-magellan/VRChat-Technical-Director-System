@@ -56,7 +56,7 @@ public class FastSaveOFF : UdonSharpBehaviour
 
     public void StartRead()
     {
-        Networking.GetOwner(this.gameObject);
+        Networking.SetOwner(Networking.LocalPlayer, this.gameObject);
 
         SystemIndex = (int)Main.GetProgramVariable("SystemIndex");
         SystemUdon = System[SystemIndex].GetComponent<UdonBehaviour>();

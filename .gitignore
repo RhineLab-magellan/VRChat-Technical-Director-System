@@ -1,0 +1,55 @@
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Plastic SCM
+.plastic/
+
+# OS generated
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Memory captures
+[Mm]emory[Cc]aptures/
+
+# AssetStoreTools
+**/Assets/AssetStoreTools
+
+# Crashlytics
+crashlytics-build.properties
+
+# APK/AAB
+*.apk
+*.aab
+
+# Private files
+*.private
+*.private.meta
+
+# ClientSimStorage (runtime generated)
+ClientSimStorage/

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: AsyncGPUReadback
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: b1cbe09cc33957c45a2ce449a1d5f73b, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 09f0e246f76c84a4cbd78f36c69f71c6, type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export cam\r\n    .export AsyncReadbackedTexture\r\n   
     .export TargetMaterial\r\n    \r\n    __instance_0: %VRCUdonUdonBehaviour, this\r\n   
     __symbolName_0: %SystemString, null\r\n    __value_0: %SystemObject, null\r\n   

@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEditor;
 using VRC.Core;
+using VRC.SDKBase.Editor;
+using VRC.SDKBase.Editor.Api;
 
 // This file handles the Content tab of the SDK Panel
 
@@ -15,19 +19,22 @@ public partial class VRCSdkControlPanel : EditorWindow
     static List<ApiAvatar> uploadedAvatars = null;
     static List<ApiWorld> uploadedWorlds = null;
     static List<ApiAvatar> testAvatars = null;
-
+    
+    
     public static Dictionary<string, Texture2D> ImageCache = new Dictionary<string, Texture2D>();
 
     static List<string> justDeletedContents;
     static List<ApiAvatar> justUpdatedAvatars;
 
     static EditorCoroutine fetchingAvatars = null, fetchingWorlds = null;
+    
 
     private static string searchString = "";
     private static bool WorldsToggle = true;
     private static bool AvatarsToggle = true;
     private static bool TestAvatarsToggle = true;
 
+    
     const string WORLDS_WEB_URL = "https://vrchat.com/home/content/worlds";
     const string WORLD_WEB_URL = "https://vrchat.com/home/content/worlds/";
     const string WORLD_WEB_URL_SUFFIX = "/edit";
@@ -61,12 +68,9 @@ public partial class VRCSdkControlPanel : EditorWindow
 
     public static void ClearContent()
     {
-        if (uploadedWorlds != null)
-            uploadedWorlds = null;
-        if (uploadedAvatars != null)
-            uploadedAvatars = null;
-        if (testAvatars != null)
-            testAvatars = null;
+        uploadedWorlds = null;
+        uploadedAvatars = null;
+        testAvatars = null;
         ImageCache.Clear();
     }
 
@@ -155,6 +159,7 @@ public partial class VRCSdkControlPanel : EditorWindow
         testAvatars = new List<ApiAvatar>();
 #endif
     }
+
 
     private static void FetchWorlds(int offset = 0)
     {
@@ -316,6 +321,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                 {
                     AvatarsListGUI(expandedLayout, ref updatedContent);
                 }
+
                 
                 if (testAvatars.Count > 0)
                 {
@@ -458,7 +464,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                             "Are you sure you want to delete " + a.name + "? This cannot be undone.", "Delete",
                             "Cancel"))
                     {
-                        foreach (VRC.Core.PipelineManager pm in FindObjectsOfType<VRC.Core.PipelineManager>()
+                        foreach (VRC.Core.PipelineManager pm in FindObjectsByType<VRC.Core.PipelineManager>(FindObjectsSortMode.None)
                                      .Where(pm => pm.blueprintId == a.id))
                         {
                             pm.blueprintId = "";
@@ -633,7 +639,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                     #if UDON
                     if (GUILayout.Button("Set Current", GUILayout.Width(COPY_WORLD_ID_BUTTON_WIDTH)))
                     {
-                        var pM = FindObjectOfType<PipelineManager>();
+                        var pM = FindFirstObjectByType<PipelineManager>();
                         if (pM != null)
                         {
                             Undo.RecordObject(pM, "Set Current World");
@@ -657,7 +663,7 @@ public partial class VRCSdkControlPanel : EditorWindow
                             "Are you sure you want to delete " + w.name + "? This cannot be undone.", "Delete",
                             "Cancel"))
                     {
-                        foreach (VRC.Core.PipelineManager pm in FindObjectsOfType<VRC.Core.PipelineManager>()
+                        foreach (VRC.Core.PipelineManager pm in FindObjectsByType<VRC.Core.PipelineManager>(FindObjectsSortMode.None)
                                      .Where(pm => pm.blueprintId == w.id))
                         {
                             pm.blueprintId = "";
@@ -692,7 +698,7 @@ public partial class VRCSdkControlPanel : EditorWindow
     private void FetchCurrentBlueprintId()
     {
         #if UDON
-        var pM = FindObjectOfType<PipelineManager>();
+        var pM = FindFirstObjectByType<PipelineManager>();
         _currentBlueprintId = pM != null ? pM.blueprintId : null;
         #endif
     }
@@ -723,43 +729,51 @@ public partial class VRCSdkControlPanel : EditorWindow
         GUILayout.EndHorizontal();
         GUILayout.EndVertical();
 
-        if (uploadedWorlds == null || uploadedAvatars == null || testAvatars == null)
+        if (((PanelTab) VRCSettings.ActiveWindowPanel) == PanelTab.ContentManager)
         {
-            if (uploadedWorlds == null)
-                uploadedWorlds = new List<ApiWorld>();
-            if (uploadedAvatars == null)
-                uploadedAvatars = new List<ApiAvatar>();
-            if (testAvatars == null)
-                testAvatars = new List<ApiAvatar>();
+            if (uploadedWorlds == null || uploadedAvatars == null || testAvatars == null)
+            {
+                if (uploadedWorlds == null)
+                    uploadedWorlds = new List<ApiWorld>();
+                if (uploadedAvatars == null)
+                    uploadedAvatars = new List<ApiAvatar>();
+                if (testAvatars == null)
+                    testAvatars = new List<ApiAvatar>();
 
-            EditorCoroutine.Start(FetchUploadedData());
-        }
+                EditorCoroutine.Start(FetchUploadedData());
+            }
 
-        if (fetchingWorlds != null || fetchingAvatars != null)
-        {
-            GUILayout.BeginVertical(boxGuiStyle, GUILayout.Width(SdkWindowWidth - 8));
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Fetching Records", titleGuiStyle);
-            EditorGUILayout.Space();
+
+            if (
+                fetchingWorlds != null
+                || fetchingAvatars != null
+            )
+            {
+                GUILayout.BeginVertical(boxGuiStyle, GUILayout.Width(SdkWindowWidth - 8));
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField("Fetching Records", titleGuiStyle);
+                EditorGUILayout.Space();
+                GUILayout.EndVertical();
+            }
+            else
+            {
+                GUILayout.BeginVertical(boxGuiStyle, GUILayout.Width(SdkWindowWidth - 8));
+                EditorGUILayout.Space();
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Label("Fetch updated records from the VRChat server");
+                if (GUILayout.Button("Fetch"))
+                    ClearContent();
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.Space();
+                GUILayout.EndVertical();
+            }
+
             GUILayout.EndVertical();
-        }
-        else
-        {
-            GUILayout.BeginVertical(boxGuiStyle, GUILayout.Width(SdkWindowWidth - 8));
-            EditorGUILayout.Space();
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("Fetch updated records from the VRChat server");
-            if (GUILayout.Button("Fetch"))
-                ClearContent();
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space();
-            GUILayout.EndVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+
+            OnGUIUserInfo();
         }
 
-        GUILayout.EndVertical();
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
-
-        OnGUIUserInfo();
     }
 }

@@ -12,6 +12,14 @@ public class 相机分配系统 : UdonSharpBehaviour
     public GameObject[] Targets;
     [Tooltip("脚本锚点")]
     public GameObject[] SystemUdon;
+
+    [Tooltip("FOV同步指数-0为不同步，大于0为实际数量")]
+    public float[] FOVIndex;
+    [Tooltip("点提示字符串")]
+    public string[] PointString;
+    [Tooltip("运行该模块是否需要满帧率运行")]
+    public bool NeedRuning = false;
+
     [Tooltip("启动抖动补偿模式后的默认插值")]
     public float SlarpV = 0.5f;
 
@@ -28,12 +36,43 @@ public class 相机分配系统 : UdonSharpBehaviour
     private bool UseUdon;
     private GameObject transformTarget;
     private int CameraTrackingTarget = 0;
+    private bool VoidObjectActive;
+
+    [HideInInspector]
+    public Transform TrackingIndicator;
+
+    [HideInInspector] public ControlCenter controlCenter;
 
     void Start()
     {
         Ready = false;
         var parent = gameObject.transform.parent;
-        Camera = parent.Find("CameraSystem");
+        Camera = parent.Find("CameraTranform");
+        UdonBehaviour udonBehaviour;
+        UdonBehaviour Local = GetComponent<UdonBehaviour>();
+
+        for (int i = 0; i < Targets.Length; i++)
+        {
+            Targets[i].SetActive(false);
+            if (i < SystemUdon.Length)
+            {
+                udonBehaviour = SystemUdon[i].GetComponent<UdonBehaviour>();
+                if (udonBehaviour != null)
+                {
+                    udonBehaviour.enabled = false;
+                    udonBehaviour.SetProgramVariable("Managerudon", Local);
+                }
+
+            }
+
+        }
+        TargetsLength = Targets.Length;
+
+    }
+    public void ChangerTarget()
+    {
+        Debug.Log("ChangerTarget Is Start");
+        Ready = false;
         for (int i = 0; i < Targets.Length; i++)
         {
             Targets[i].SetActive(false);
@@ -41,22 +80,7 @@ public class 相机分配系统 : UdonSharpBehaviour
             {
                 SystemUdon[i].GetComponent<UdonBehaviour>().enabled = false;
             }
-            
-        }
-        TargetsLength = Targets.Length;
-    }
-    public void ChangerTarget()
-    {
-        Debug.Log("ChangerTarget Is Start");
-        Ready = false;
-        for (int i = 0; i < Targets.Length; i++) 
-        {
-          Targets[i].SetActive(false);
-            if ( i < SystemUdon.Length) 
-            {
-                SystemUdon[i].GetComponent<UdonBehaviour>().enabled = false;
-            }
-          
+
         }
 
         if (CameraTrackingTarget > Targets.Length - 1)
@@ -69,47 +93,53 @@ public class 相机分配系统 : UdonSharpBehaviour
 
         if (CameraTrackingTarget < SystemUdon.Length)
         {
-            if(SystemUdon[CameraTrackingTarget] != null) 
+            UdonBehaviour udonBehaviour = SystemUdon[CameraTrackingTarget].GetComponent<UdonBehaviour>();
+            if (udonBehaviour != null)
             {
-                if(UseUdon)
+                if (UseUdon)
                 {
-                    SystemUdon[CameraTrackingTarget].GetComponent<UdonBehaviour>().enabled = true;
+                    udonBehaviour.enabled = true;
+                    udonBehaviour.SendCustomEventDelayedFrames("OnEnable", 1);
+                    udonBehaviour.SetProgramVariable("VoidObjectActive", VoidObjectActive);
                 }
                 else
                 {
-                    SystemUdon[CameraTrackingTarget].GetComponent<UdonBehaviour>().enabled = false;
+                    udonBehaviour.enabled = false;
                 }
-                  
+
             }
         }
         transformTarget = Targets[CameraTrackingTarget];
         Ready = true;
+        SendCustomEventDelayedFrames("ReSyncFOV", 1);
     }
 
     private void Update()
     {
-        if (Ready == true) 
+        if (Ready)
         {
-            if(Slarp == true) 
+            if (Slarp == true)
             {
-                
-                var quaternion = Quaternion.Slerp(Camera.transform.rotation,transformTarget.transform.rotation, SlarpV*Time.deltaTime*20);
-                Vector3 vector3 = transformTarget.transform.position;
+
+                var quaternion = Quaternion.Slerp(Camera.transform.rotation, transformTarget.transform.rotation, SlarpV * Time.deltaTime * 20);
+                Vector3 vector3;
                 if (!positionSlarp)
                 //联动缓动
                 {
-                    vector3 = Vector3.Slerp(Camera.transform.position, transformTarget.transform.position,SlarpV*Time.deltaTime*20);
+                    vector3 = Vector3.Slerp(Camera.transform.position, transformTarget.transform.position, SlarpV * Time.deltaTime * 20);
                 }
                 //独立缓动
                 else
                 {
-                    vector3 = Vector3.Slerp(Camera.transform.position, transformTarget.transform.position, positionSlarpV*Time.deltaTime*20);
+                    vector3 = Vector3.Slerp(Camera.transform.position, transformTarget.transform.position, positionSlarpV * Time.deltaTime * 20);
                 }
 
+                //Camera.transform.SetPositionAndRotation(vector3, quaternion);
                 Camera.transform.SetPositionAndRotation(vector3, quaternion);
             }
-            else 
+            else
             {
+                //Camera.transform.SetPositionAndRotation(transformTarget.transform.position, transformTarget.transform.rotation);
                 Camera.transform.SetPositionAndRotation(transformTarget.transform.position, transformTarget.transform.rotation);
             }
 
@@ -121,8 +151,8 @@ public class 相机分配系统 : UdonSharpBehaviour
         Ready = false;
         for (int i = 0; i < Targets.Length; i++)
         {
-         Targets[i].SetActive(false);
-        if (i < SystemUdon.Length)
+            Targets[i].SetActive(false);
+            if (i < SystemUdon.Length)
             {
                 SystemUdon[i].GetComponent<UdonBehaviour>().enabled = false;
             }
@@ -132,16 +162,30 @@ public class 相机分配系统 : UdonSharpBehaviour
 
     private void OnEnable()
     {
-        if (Camera == null) 
+        if (Camera == null)
         {
             var parent = gameObject.transform.parent;
             //Debug.Log(parent.name);
-            Camera = parent.Find("CameraSystem");
+            Camera = parent.Find("CameraTranform").GetChild(0);
         }
 
     }
-    
 
-    
+    public void ChangerUsingPlayer()
+    {
+        Networking.SetOwner(Networking.LocalPlayer, Camera.gameObject);
+        Networking.SetOwner(Networking.LocalPlayer, Camera.GetChild(0).gameObject);
+    }
+
+    public void ReSyncFOV()
+    {
+        if (FOVIndex[CameraTrackingTarget] > 0)
+        {
+            controlCenter.FOVControllerSet(FOVIndex[CameraTrackingTarget]);
+        }
+    }
+
+
+
 
 }
